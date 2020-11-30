@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 企鹅阅读
+name: 企鹅阅读多账号
 
 on:
   workflow_dispatch:
@@ -16,7 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        COOKIE_QQYD: ${{ secrets.COOKIE_QQYD }}
+        COOKIE_QQYD: ${{ secrets.COOKIE_QQYD}}
+        COOKIE_QQYD2: ${{ secrets.COOKIE_QQYD2 }}
+        COOKIE_QQYD3: ${{ secrets.COOKIE_QQYD3 }}
+        COOKIE_QQYD4: ${{ secrets.COOKIE_QQYD4 }}
+        COOKIE_QQYD5: ${{ secrets.COOKIE_QQYD5 }}
+
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
@@ -27,14 +32,48 @@ jobs:
         run: |
           npm install
           npm install got download tough-cookie
-      - name: ' 运行 【企鹅阅读】'
+      - name: ' 运行 【企鹅阅读一】'
+        if: env.COOKIE_QQYD
         run: |
           node qqyd.js
         env:
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          COOKIE_QQYD: ${{ secrets.COOKIE_QQYD}}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+      - name: ' 运行 【企鹅阅读二】'
+        if: env.COOKIE_QQYD2
+        run: |
+          node qqyd.js
+        env:
+          COOKIE_QQYD: ${{ secrets.COOKIE_QQYD2 }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+      - name: ' 运行 【企鹅阅读3】'
+        if: env.COOKIE_QQYD3
+        run: |
+          node qqyd.js
+        env:
+          COOKIE_QQYD: ${{ secrets.COOKIE_QQYD3 }}
+      - name: ' 运行 【企鹅阅读4】'
+        if: env.COOKIE_QQYD4
+        run: |
+          node qqyd.js
+        env:
+          COOKIE_QQYD: ${{ secrets.COOKIE_QQYD4 }}
+      - name: ' 运行 【企鹅阅读5】'
+        if: env.COOKIE_QQYD5
+        run: |
+          node qqyd.js
+        env:
+          COOKIE_QQYD: ${{ secrets.COOKIE_QQYD5 }}
+      - name: ' 运行 【企鹅阅读6】'
+        if: env.COOKIE_QQYD6
+        run: |
+          node qqyd.js
+ 
+      
+        env:
+          COOKIE_QQYD: ${{ secrets.COOKIE_QQYD16 }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+
